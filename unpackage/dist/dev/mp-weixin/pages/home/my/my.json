@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "my-cell": "/pages/home/my/myCell"
+  }
+}
