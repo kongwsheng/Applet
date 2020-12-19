@@ -1,0 +1,65 @@
+.technic-item.data-v-59942cc0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.technic-item .left.data-v-59942cc0 {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.technic-item .left .title.data-v-59942cc0 {
+  font-size: 16px;
+  font-family: PingFangSC, PingFangSC-Medium;
+  font-weight: 500;
+  text-align: left;
+  color: #181a39;
+  line-height: 22.5px;
+  letter-spacing: 0.19px;
+}
+.technic-item .left .other.data-v-59942cc0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  font-size: 12px;
+  font-family: PingFangSC, PingFangSC-Regular;
+  font-weight: 400;
+  text-align: left;
+  color: #b4b4bd;
+  line-height: 16.5px;
+  letter-spacing: 0.14px;
+}
+.technic-item .left .other .o1.data-v-59942cc0 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.technic-item .left .other .o3.data-v-59942cc0 {
+  margin-right: 21px;
+}
+.technic-item .left .other .iconfont.data-v-59942cc0 {
+  margin-right: 7px;
+}
+.technic-item .right.data-v-59942cc0 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  width: 113px;
+  height: 75px;
+  margin-left: 15.9px;
+  object-fit: cover;
+}
+

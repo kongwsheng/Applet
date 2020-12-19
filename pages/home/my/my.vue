@@ -45,17 +45,6 @@
           <view class="num">76%</view>
           <view class="txt">正确率</view>
         </view>
-        <!-- </view>
-      <view class="top3">
-        <! van-cell
-        title:左边文本
-        value:右边文本
-        is-viewnk右边小剪头
-        icon:vant自带图标
-        center:true:上下居中对齐
-        slot="title/defaviewt/icon/right-icon"
-        -->
-        <!--  -->
       </view>
       <view class="top3">
         <myCell
@@ -111,7 +100,9 @@ import { mapState } from 'vuex'
 export default {
   components: { myCell },
   data () {
-    return {}
+    return {
+      baseUrl: this.$baseUrl
+    }
   },
   methods: {
     login () {

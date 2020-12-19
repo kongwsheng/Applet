@@ -14,13 +14,38 @@
       "path": "pages/home/question/question"
     },
     {
-      "path": "pages/home/find/find"
+      "path": "pages/home/find/find",
+      "style": {
+        "navigationBarTitleText": "发现",
+        "enablePullDownRefresh": true,
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#222222",
+            "titleSize": "18px",
+            "titleAlign": "center"
+          }
+        }
+      }
     },
     {
       "path": "pages/home/my/my"
     },
     {
       "path": "pages/login/login"
+    },
+    {
+      "path": "pages/home/find/shareInterview/getMore",
+      "style": {
+        "navigationBarTitleText": "面试技巧",
+        "enablePullDownRefresh": true,
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#222222",
+            "titleSize": "18px",
+            "titleAlign": "center"
+          }
+        }
+      }
     }
   ],
   "globalStyle": {

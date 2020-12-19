@@ -81,11 +81,11 @@ export default {
       this.$refs.uForm.validate(valid => {
         if (valid) {
           console.log('验证通过')
-          auLogin(this.form).then(({ data }) => {
-            console.log({ data }, setLocal)
-            setLocal('token', data.jwt)
+          auLogin(this.form).then(res => {
+            console.log(res)
+            setLocal('token', res.jwt)
             // 保存用户信息到vuex
-            this.$store.commit('setUserInfo', data.user)
+            this.$store.commit('setUserInfo', res.user)
             // 修改登陆状态
             this.$store.commit('setIsLogin', true)
           })
@@ -98,7 +98,11 @@ export default {
     codeChange (text) {
       this.tips = text
     },
-    async getCode () {
+    getCode () {
+      const mobile = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/
+      if (!mobile.test(this.form.mobile)) {
+        return
+      }
       if (this.$refs.uCode.canGetCode) {
         // 模拟向后端请求验证码
         uni.showLoading({
@@ -110,9 +114,8 @@ export default {
           this.$u.toast('验证码已发送')
           // 通知验证码组件内部开始倒计时
           this.$refs.uCode.start()
-          auCode(this.form).then(({ data }) => {
-            this.$u.toast(data)
-            this.form.code = data
+          auCode(this.form).then(res => {
+            this.$u.toast(res)
           })
         }, 2000)
       } else {

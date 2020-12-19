@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "发现",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "find-cell": "/pages/home/find/findCell",
+    "share-item": "/pages/home/find/share-item",
+    "market-data": "/pages/home/find/marketData"
+  }
 }

@@ -10,7 +10,7 @@
       <image
         class="image"
         v-if="type === 'image' && value"
-        :src="baseUrl + value"
+        :src="String($baseUrl) + value"
         alt=""
       />
 

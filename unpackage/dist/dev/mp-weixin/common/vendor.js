@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7331,7 +7331,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7352,14 +7352,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7445,7 +7445,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -11600,6 +11600,32 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 /* 42 */
+/*!****************************************!*\
+  !*** D:/x项目/xiaochengxu/utils/comm.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _baseUrl = __webpack_require__(/*! ./baseUrl */ 43);var _default =
+{
+  install: function install(Vue) {
+    Vue.prototype.$baseUrl = _baseUrl.baseUrl;
+  } };exports.default = _default;
+
+/***/ }),
+/* 43 */
+/*!*******************************************!*\
+  !*** D:/x项目/xiaochengxu/utils/baseUrl.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.baseUrl = void 0;var baseUrl = 'http://47.106.228.28:1337';exports.baseUrl = baseUrl;
+
+/***/ }),
+/* 44 */
 /*!*****************************************************!*\
   !*** D:/x项目/xiaochengxu/common/http.interceptor.js ***!
   \*****************************************************/
@@ -11607,16 +11633,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 这里的vm，就是我们在vue文件里面的this，所以我们能在这里获取vuex的变量，比如存放在里面的token
-// 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _baseUrl = __webpack_require__(/*! @/utils/baseUrl */ 43);
+// 这里的vm，就是我们在vue文件里面的this，所以我们能在这里获取vuex的变量，比如存放在里面的token
 var install = function install(Vue, vm) {
   Vue.prototype.$u.http.setConfig({
-    baseUrl: 'http://localhost:1337'
-    // loadingText: '努力加载中~',
-    // loadingTime: 500
-    // 如果将此值设置为true，拦截回调中将会返回服务端返回的所有数据response，而不是response.data
-    // 设置为true后，就需要在this.$u.http.interceptor.response进行多一次的判断，请打印查看具体值
-    // originalData: true,
+    baseUrl: _baseUrl.baseUrl
     // 设置自定义头部content-type
     // header: {
     // 	'content-type': 'xxx'
@@ -11625,20 +11646,8 @@ var install = function install(Vue, vm) {
   // 请求拦截，配置Token等参数
   Vue.prototype.$u.http.interceptor.request = function (config) {
     // config.header.Token = 'xxxxxx'
-    console.log(config);
-    // 方式一，存放在vuex的token，假设使用了uView封装的vuex方式，见：https://uviewui.com/components/globalVariable.html
-    // config.header.token = vm.token;
-
-    // 方式二，如果没有使用uView封装的vuex方法，那么需要使用$store.state获取
-    // config.header.token = vm.$store.state.token;
-
-    // 方式三，如果token放在了globalData，通过getApp().globalData获取
-    // config.header.token = getApp().globalData.username;
-
-    // 方式四，如果token放在了Storage本地存储中，拦截是每次请求都执行的，所以哪怕您重新登录修改了Storage，下一次的请求将会是最新值
-    // const token = uni.getStorageSync('token');
-    // config.header.token = token;
-
+    // console.log(config)
+    console.log(Vue.prototype.$data);
     return config;
   };
   // 响应拦截，判断状态码是否通过
@@ -11648,7 +11657,7 @@ var install = function install(Vue, vm) {
     if (res.code == 200) {
       // 如果把originalData设置为了true，这里return回什么，this.$u.post的then回调中就会得到什么
       console.log(res);
-      return res;
+      return res.data;
     } else return false;
   };
 };var _default =
@@ -11657,7 +11666,7 @@ var install = function install(Vue, vm) {
   install: install };exports.default = _default;
 
 /***/ }),
-/* 43 */
+/* 45 */
 /*!*********************************************!*\
   !*** D:/x项目/xiaochengxu/common/http.api.js ***!
   \*********************************************/
@@ -11665,22 +11674,17 @@ var install = function install(Vue, vm) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 如果没有通过拦截器配置域名的话，可以在这里写上完整的URL(加上域名部分)
-var hotSearchUrl = '/ebapi/store_api/hot_search';
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var hotSearchUrl = '/ebapi/store_api/hot_search';
 var indexUrl = '/ebapi/public_api/index';
 
-// 此处第二个参数vm，就是我们在页面使用的this，你可以通过vm获取vuex等操作，更多内容详见uView对拦截器的介绍部分：
-// https://uviewui.com/js/http.html#%E4%BD%95%E8%B0%93%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%EF%BC%9F
 var install = function install(Vue, vm) {
-  // 此处没有使用传入的params参数
-  var getSearch = function getSearch() {var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};return vm.$u.get(hotSearchUrl, {
-      id: 2 });};
+  var getSearch = function getSearch() {var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};return (
+      vm.$u.get(hotSearchUrl, {
+        id: 2 }));};
 
 
-  // 此处使用了传入的params参数，一切自定义即可
   var getInfo = function getInfo() {var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};return vm.$u.post(indexUrl, params);};
 
-  // 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
   vm.$u.api = { getSearch: getSearch, getInfo: getInfo };
 };var _default =
 
@@ -11688,7 +11692,7 @@ var install = function install(Vue, vm) {
   install: install };exports.default = _default;
 
 /***/ }),
-/* 44 */
+/* 46 */
 /*!***************************************!*\
   !*** D:/x项目/xiaochengxu/api/login.js ***!
   \***************************************/
@@ -11706,8 +11710,6 @@ function auLogin(data) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 45 */,
-/* 46 */,
 /* 47 */,
 /* 48 */,
 /* 49 */,
@@ -11726,19 +11728,25 @@ function auLogin(data) {
 /* 62 */,
 /* 63 */,
 /* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */
+/* 65 */
+/*!**************************************!*\
+  !*** D:/x项目/xiaochengxu/api/find.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.articlesTechnic = articlesTechnic;exports.chartDataHot = chartDataHot;function articlesTechnic(data) {
+  return uni.$u.http['get']('/articles/technic', data);
+}
+
+function chartDataHot() {
+  return uni.$u.http['get']('/chart-data/hot');
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 66 */
 /*!*******************************************************!*\
   !*** D:/x项目/xiaochengxu/static/iconfont/iconfont.css ***!
   \*******************************************************/
@@ -11750,7 +11758,23 @@ function auLogin(data) {
   
 
 /***/ }),
-/* 78 */
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */
 /*!*****************************************!*\
   !*** D:/x项目/xiaochengxu/utils/local.js ***!
   \*****************************************/
@@ -11772,11 +11796,6 @@ function removeLocal() {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
 /* 84 */,
 /* 85 */,
 /* 86 */,
@@ -11793,7 +11812,33 @@ function removeLocal() {
 /* 97 */,
 /* 98 */,
 /* 99 */,
-/* 100 */
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */
 /*!********************************************************!*\
   !*** D:/x项目/xiaochengxu/uview-ui/libs/util/emitter.js ***!
   \********************************************************/
@@ -11852,7 +11897,7 @@ function _broadcast(componentName, eventName, params) {
     } } };exports.default = _default;
 
 /***/ }),
-/* 101 */
+/* 127 */
 /*!****************************************************************!*\
   !*** D:/x项目/xiaochengxu/uview-ui/libs/util/async-validator.js ***!
   \****************************************************************/
@@ -11882,7 +11927,7 @@ function _broadcast(componentName, eventName, params) {
 var formatRegExp = /%[sdj%]/g;
 var warning = function warning() {}; // don't print warning message when in production env or node runtime
 
-if (typeof process !== 'undefined' && Object({"NODE_ENV":"development","VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}) && "development" !== 'production' && typeof window !==
+if (typeof process !== 'undefined' && Object({"VUE_APP_NAME":"xiaochengxu","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}) && "development" !== 'production' && typeof window !==
 'undefined' && typeof document !== 'undefined') {
   warning = function warning(type, errors) {
     if (typeof console !== 'undefined' && console.warn) {
@@ -13215,10 +13260,10 @@ Schema.warning = warning;
 Schema.messages = messages;var _default =
 
 Schema;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 102)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 128)))
 
 /***/ }),
-/* 102 */
+/* 128 */
 /*!********************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/process.js ***!
   \********************************************************/
@@ -13249,7 +13294,7 @@ exports.binding = function (name) {
     var path;
     exports.cwd = function () { return cwd };
     exports.chdir = function (dir) {
-        if (!path) path = __webpack_require__(/*! path */ 103);
+        if (!path) path = __webpack_require__(/*! path */ 129);
         cwd = path.resolve(dir, cwd);
     };
 })();
@@ -13262,7 +13307,7 @@ exports.features = {};
 
 
 /***/ }),
-/* 103 */
+/* 129 */
 /*!***********************************************!*\
   !*** ./node_modules/path-browserify/index.js ***!
   \***********************************************/
@@ -13572,7 +13617,7 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 102)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 128)))
 
 /***/ })
 ]]);

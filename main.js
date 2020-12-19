@@ -10,6 +10,9 @@ App.mpType = 'app'
 import uView from './uview-ui'
 Vue.use(uView)
 
+import comm from './utils/comm.js'
+Vue.use(comm)
+
 const app = new Vue({
   store,
   ...App
@@ -24,4 +27,5 @@ import httpApi from './common/http.api.js'
 Vue.use(httpApi, app)
 
 import './api/login'
+
 app.$mount()

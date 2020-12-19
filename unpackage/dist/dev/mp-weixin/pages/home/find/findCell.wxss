@@ -1,0 +1,30 @@
+.findCell.data-v-59f750da {
+  padding: 14.5px 0;
+}
+.findCell .title.data-v-59f750da {
+  padding-left: 10px;
+  font-size: 18px;
+  font-family: PingFangSC, PingFangSC-Medium;
+  font-weight: 600;
+  text-align: left;
+  color: #222222;
+  line-height: 25px;
+  letter-spacing: 0.21px;
+  padding: 0;
+}
+.findCell .value.data-v-59f750da {
+  font-size: 14px;
+  font-family: PingFangSC, PingFangSC-Regular;
+  font-weight: 400;
+  text-align: right;
+  color: #5b5d75;
+  line-height: 20px;
+  letter-spacing: 0.16px;
+}
+.findCell .img.data-v-59f750da {
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+}
+
